@@ -1,5 +1,6 @@
 import asyncio
 import aiohttp
+import time
 
 class HttpStress():
     
@@ -10,36 +11,31 @@ class HttpStress():
         self.http_tests = http_tests
         self.client = aiohttp.ClientSession()
     
-    async def run_tests(self):
-        for url, method, data_params, headers, test in self.http_tests:
-            if method == HttpStress.GET:
-                await self.do_get(url, data_params, headers, test)
-            elif method == HttpStress.POST:
-                await self.do_post(url, data_params, headers, test)
+    def async_tests(self):
+        """
+        returns a list of futures to be run async by event loop
+        """
+        futures = []
+        for timestep, url, method, kwargs in self.http_tests:
+            futures.append(self.make_request(timestep, url, method, kwargs))
 
-    async def do_post(self, url, post_data, headers, test_response):
-        pass
+        return futures
 
-    async def do_get(self, url, params, headers, test_response):
-        async with self.client.get(url, params=params, headers=headers) as response:
-            test_response(await response.json())
-
+    async def make_request(self, timestep, url, method, kwargs):
+        print("timestep {} method {} url {}".format(timestep, method, url))
+        await asyncio.sleep(timestep)
+        async with self.client.request(method, url, **kwargs) as response:
+            print(await response.text())
+       
     def __del__(self):
         self.client.close()
-
-
-def test_mr_status(response):
-    print(response)
 
 if __name__ == '__main__':
 
     stress = HttpStress(
         http_tests=[
-            ('http://modelrunner.io/status', 
-             'GET', 
-             None, 
-             {'Accept': 'application/json'},
-             test_mr_status)])
-
+            (3, 'http://modelrunner.io/jobs', 'GET', {'headers': {'Accept': 'application/json'}}),
+            (0, 'http://modelrunner.io/status', 'GET', {'headers': {'Accept': 'application/json'}}),
+            ])
     
-    asyncio.get_event_loop().run_until_complete(stress.run_tests())
+    asyncio.get_event_loop().run_until_complete(asyncio.wait(stress.async_tests()))
