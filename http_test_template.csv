@@ -1,0 +1,3 @@
+%t,http://localhost:8080/jobs,GET,{"headers": {"Accept": "application/json"}}
+%t,http://localhost:8080/status,GET,{"headers": {"Accept": "application/json"}}
+%t,http://localhost:8080/jobs,POST,{"files": {"zip_file": "sleep_count_8.zip"}, "data": {"model": "test", "job_name": "sleep_8_%i"}, "headers": {"Accept": "application/json"}}

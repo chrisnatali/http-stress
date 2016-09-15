@@ -1,0 +1,3 @@
+3,http://localhost:8080/jobs,GET,{"headers": {"Accept": "application/json"}}
+0,http://localhost:8080/status,GET,{"headers": {"Accept": "application/json"}}
+1,http://localhost:8080/jobs,POST,{"files": {"zip_file": "sleep_count_8.zip"}, "data": {"model": "test", "job_name": "sleep_8_1"}, "headers": {"Accept": "application/json"}}
