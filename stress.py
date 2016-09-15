@@ -35,7 +35,7 @@ class HttpStress():
             arg_dict['files'] = file_dict
         partial = functools.partial(requests.request, method, url, **arg_dict)
         response = await self.event_loop.run_in_executor(None, partial)
-        print(','.join(timestep, url, method, response.text))
+        print(','.join([str(timestep), url, method, response.text]))
 
 def convert_record(tup):
     try:
