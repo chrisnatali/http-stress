@@ -11,19 +11,19 @@ and install the dependencies via `pip install -r requirements.txt`
 
 If you don't have a server up, you can modify sample_server.py and bring it up
 ```shell
-$ python -m aiohttp.web -H localhost -P 9000 server:init
+$ python -m aiohttp.web -H localhost -P 9000 sample_server:init
 ```
 
 Then you can generate the test requests and run them
 ```shell
 # show input template
-$ cat http_requests_template.csv
+$ cat http_requests_template_sample.csv
 %t,http://localhost:9000/jobs,GET,{"headers": {"Accept": "application/json"}}
 %t,http://localhost:9000/status,GET,{"headers": {"Accept": "application/json"}}
 %t,http://localhost:9000/jobs,POST,{"files": {"zip_file": "sleep_count_8.zip"}, "data": {"model": "test", "job_name": "sleep_8_%i"}, "headers": {"Accept": "application/json"}}
 
 # generate 6 requests over 10 time steps from template
-$ python generate_requests.py -n 6 -t 10 http_requests_template.csv > http_requests.csv
+$ python generate_requests.py -n 6 -t 10 http_requests_template_sample.csv > http_requests.csv
 
 # show generated requests
 $ cat http_requests.csv
