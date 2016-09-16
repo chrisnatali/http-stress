@@ -20,16 +20,16 @@ Then you can generate the test requests and run them
 $ cat http_requests_template_sample.csv
 %t,http://localhost:9000/jobs,GET,{"headers": {"Accept": "application/json"}}
 %t,http://localhost:9000/status,GET,{"headers": {"Accept": "application/json"}}
-%t,http://localhost:9000/jobs,POST,{"files": {"zip_file": "sleep_count_8.zip"}, "data": {"model": "test", "job_name": "sleep_8_%i"}, "headers": {"Accept": "application/json"}}
+%t,http://localhost:9000/jobs,POST,{"files": {"zip_file": "zip_file_8.zip"}, "data": {"model": "test", "job_name": "zip_8_%i"}, "headers": {"Accept": "application/json"}}
 
 # generate 6 requests over 10 time steps from template
 $ python generate_requests.py -n 6 -t 10 http_requests_template_sample.csv > http_requests.csv
 
 # show generated requests
 $ cat http_requests.csv
-10,http://localhost:9000/jobs,POST,{"files": {"zip_file": "sleep_count_8.zip"}, "data": {"model": "test", "job_name": "sleep_8_0"}, "headers": {"Accept": "application/json"}}
+10,http://localhost:9000/jobs,POST,{"files": {"zip_file": "zip_file_8.zip"}, "data": {"model": "test", "job_name": "zip_8_0"}, "headers": {"Accept": "application/json"}}
 1,http://localhost:9000/status,GET,{"headers": {"Accept": "application/json"}}
-1,http://localhost:9000/jobs,POST,{"files": {"zip_file": "sleep_count_8.zip"}, "data": {"model": "test", "job_name": "sleep_8_2"}, "headers": {"Accept": "application/json"}}
+1,http://localhost:9000/jobs,POST,{"files": {"zip_file": "zip_file_8.zip"}, "data": {"model": "test", "job_name": "zip_8_2"}, "headers": {"Accept": "application/json"}}
 1,http://localhost:9000/jobs,GET,{"headers": {"Accept": "application/json"}}
 9,http://localhost:9000/jobs,GET,{"headers": {"Accept": "application/json"}}
 5,http://localhost:9000/jobs,GET,{"headers": {"Accept": "application/json"}}
