@@ -1,0 +1,6 @@
+10,http://localhost:9000/jobs,POST,{"files": {"zip_file": "sleep_count_8.zip"}, "data": {"model": "test", "job_name": "sleep_8_0"}, "headers": {"Accept": "application/json"}}
+4,http://localhost:9000/jobs,POST,{"files": {"zip_file": "sleep_count_8.zip"}, "data": {"model": "test", "job_name": "sleep_8_1"}, "headers": {"Accept": "application/json"}}
+3,http://localhost:9000/jobs,POST,{"files": {"zip_file": "sleep_count_8.zip"}, "data": {"model": "test", "job_name": "sleep_8_2"}, "headers": {"Accept": "application/json"}}
+9,http://localhost:9000/jobs,GET,{"headers": {"Accept": "application/json"}}
+4,http://localhost:9000/status,GET,{"headers": {"Accept": "application/json"}}
+3,http://localhost:9000/jobs,POST,{"files": {"zip_file": "sleep_count_8.zip"}, "data": {"model": "test", "job_name": "sleep_8_5"}, "headers": {"Accept": "application/json"}}

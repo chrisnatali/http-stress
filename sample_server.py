@@ -1,3 +1,14 @@
+"""
+Sample Server used to test http_stress against
+
+Modify endpoints and handlers as needed
+
+Example:
+    $ python -m aiohttp.web -H localhost -P 9000 server:init
+
+See [aiohttp docs](http://aiohttp.readthedocs.io/en/stable/web.html)
+"""
+
 from aiohttp import web
 import json
 
@@ -9,9 +20,9 @@ async def handle(request):
         body=json.dumps({'result': 'OK'}).encode('utf-8'),
         content_type='application/json')
 
-def init_function(argv):
+def init(argv):
     app = web.Application()
     app.router.add_route('GET', '/jobs', handle)
     app.router.add_route('GET', '/status', handle)
     app.router.add_route('POST', '/jobs', handle)
-    return app
+    return appfrom aiohttp import web
